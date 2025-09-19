@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import AuthProvider from "@/components/providers/session-provider";
 import "./globals.css";
 
 const inter = Inter({
@@ -29,10 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
         <Analytics />
         <SpeedInsights />
       </body>
